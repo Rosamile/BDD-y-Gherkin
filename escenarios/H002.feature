@@ -1,21 +1,23 @@
+#language: es
+
 Feature: Registro en la plataforma de un usuario
 
-    Background: El usuario esta en la pantalla principal
+    Background: El usuario accede a la tienda en linea
         Given el usuario navega al home principal del sitio web
 
     @EscenarioFeliz
-    Scenario: acceso a la opcion registro
+    Scenario:acceso exitoso a la opcion registro
         When El usuario selecciona la opcion "Register" en la pagina principal
         Then La pagina debe mostrar el formulario de registro
 
 
     @EscenarioNegativo
-    Scenario: acceso a la opcion registro
+    Scenario:acceso fallido a la opcion registro
         When El usuario selecciona la opcion "Register" en la pagina principal
         Then La pagina no muestra el formulario de registro
 
     @EscenarioOutline
-    Scenario: Registro exitoso con datos obligatorios
+    Scenario:Registro exitoso con datos obligatorios
         Given El usuario esta en la pagina de registro
         When Ingresa los siguientes datos
         Examples:
@@ -30,8 +32,8 @@ Feature: Registro en la plataforma de un usuario
         And Muestra un mensaje indicando que el usuario es creado exitosamente
 
 
-    @EscenarioNegativo
-    Scenario: Registro con menos de 6  caracteres en la contraseña
+    @EscenarioOutline
+    Scenario:Registro con menos de 6  caracteres en la contraseña
         Given El usuario esta en la pagina de registro
         When Ingresa una contraseña con menos de 6 caracteres
         Examples:
@@ -44,7 +46,7 @@ Feature: Registro en la plataforma de un usuario
 
 
     @EscenarioOutline
-    Scenario: Registro de usuario con campos obligatorios incompletos
+    Scenario:Registro de usuario con campos obligatorios incompletos
         Given El usuario esta en la pagina de registro
         When El usuario no registra la totalidad de los campos obligatorios
         Examples:
