@@ -1,17 +1,17 @@
-#language: es
+#language:es
 
-Feature: Visualizacion de computadores
+Caracteristica: Visualizacion de computadores
 
-    Background: El accede al URL de la pagina principal
-        Given el usuario navega al home principal del sitio web
-        And el usuario esta autenticado
+    Antecedentes: El accede al URL de la pagina principal
+        Dado el usuario navega al home principal del sitio web
+        Y el usuario esta autenticado
 
-    @EscenarioOutline
-    Scenario:Acceso a las opciones del menu "Computers"
-        When El usuario selecciona la opcion "Computers"
-        Then muestra las categorias disponibles
+    @EsquemaDelEscenario
+    Esquema del escenario:Acceso a las opciones del menu "Computers"
+        Cuando El usuario selecciona la opcion "Computers"
+        Entonces muestra las categorias disponibles
 
-        Examples:
+        Ejemplos:
             | estadoOpcionComputers | opcion1           | opcion2           | opcion3          |
             | Seleccionado          | Muestra Desktops  |                   |                  |
             | Seleccionado          | Muestra Notebooks |                   |                  |
@@ -21,12 +21,12 @@ Feature: Visualizacion de computadores
             | Seleccionado          | Muestra Desktops  | Muestra Notebooks | Muestra Software |
             | Seleccionado          |                   |                   |                  |
 
-    @EscenarioOutline
-    Scenario:visualizacion de  productos en diferentes formatos
-        When El usuario selecciona la opcion <categoria>
-        And El usuario selecciona el <formato>
-        Then Debe mostrar los productos en el formato <formato>
-        Examples:
+    @EsquemaDelEscenario
+    Esquema del escenario:visualizacion de  productos en diferentes formatos
+        Cuando El usuario selecciona la opcion <categoria>
+        Y El usuario selecciona el <formato>
+        Entonces Debe mostrar los productos en el formato <formato>
+        Ejemplos:
             | categoria | formato |
             | Desktops  | lista   |
             | Desktops  | cuadros |
@@ -35,12 +35,12 @@ Feature: Visualizacion de computadores
             | Software  | lista   |
             | Software  | cuadros |
 
-    @EscenarioOutline
-    Scenario:visualizacion incorrecta de productos en diferentes formatos
-        When El usuario selecciona la opcion <categoria>
-        And El usuario selecciona el <formato>
-        Then  debe mostrar <resultado> en el formato <visualizacion>
-        Examples:
+    @EsquemaDelEscenario
+    Esquema del escenario:visualizacion incorrecta de productos en diferentes formatos
+        Cuando El usuario selecciona la opcion <categoria>
+        Y El usuario selecciona el <formato>
+        Entonces  debe mostrar <resultado> en el formato <visualizacion>
+        Ejemplos:
             | categoria | formato       | resultado  | formatoResultante |
             | Software  |               | no muestra |                   |
             | Desktops  |               | no muestra |                   |
@@ -55,22 +55,22 @@ Feature: Visualizacion de computadores
             | Desktops  | cuadro        | producto   | lista             |
             | Notebooks | cuadro        | producto   | lista             |
 
-    @EscenarioOutline
-    Scenario:ordenamiento de productos en diferentes formatos
-        When El usuario selecciona la opcion <ordenar>
-        Then  debe mostrar <formatoResultante>
-        Examples:
+    @EsquemaDelEscenario
+    Esquema del escenario:ordenamiento de productos en diferentes formatos
+        Cuando El usuario selecciona la opcion <ordenar>
+        Entonces  debe mostrar <formatoResultante>
+        Ejemplos:
             | ordenar               | formatoResultante    |
             | AZ nombre ascendente  | AZ nombre ascendente |
             | AZ nombre descendente | AZ nombredescendente |
             | precio mayor a menor  | precio mayor a menor |
             | precio menor a mayor  | precio menor a mayor |
 
-    @EscenarioOutline
-    Scenario: ordenamiento incorrecto de productos en diferentes formatos
-        When El usuario selecciona la opcion <ordenar>
-        Then  debe mostrar <formatoResultante>
-        Examples:
+    @EsquemaDelEscenario
+    Esquema del escenario: ordenamiento incorrecto de productos en diferentes formatos
+        Cuando El usuario selecciona la opcion <ordenar>
+        Entonces  debe mostrar <formatoResultante>
+        Ejemplos:
             | ordenar               | formatoResultante     |
             | AZ nombre ascendente  | AZ nombre descendente |
             | AZ nombre ascendente  | precio mayor a menor  |
@@ -89,32 +89,32 @@ Feature: Visualizacion de computadores
             | precio menor a mayor  | AZ nombre ascendente  |
             | precio menor a mayor  |                       |
 
-    @EscenarioOutline
-    Scenario:filtro exitoso por precio en diferentes rangos
-        When El usuario selecciona la categoria <categoria>
-        And Selecciona el filtro por precio <rango>
-        Then El sistema muestra solo los productos del rango <rango>
-        Examples:
+    @EsquemaDelEscenario
+    Esquema del escenario:filtro exitoso por precio en diferentes rangos
+        Cuando El usuario selecciona la categoria <categoria>
+        Y Selecciona el filtro por precio <rango>
+        Entonces El sistema muestra solo los productos del rango <rango>
+        Ejemplos:
             | categoria | rango               |
             | Desktops  | Entre $1000 y $1200 |
             | Notebooks | Mayor a $1200       |
             | Software  |                     |
 
-    @EscenarioOutline
-    Scenario:Usuario intenta filtrar por precio
-        When El usuario selecciona la categoria <categoria>
-        Then El sistema <muestraFiltro> muestra el filtro
-        Examples:
+    @EsquemaDelEscenario
+    Esquema del escenario:Usuario intenta filtrar por precio
+        Cuando El usuario selecciona la categoria <categoria>
+        Entonces El sistema <muestraFiltro> muestra el filtro
+        Ejemplos:
             | categoria | muestraFiltro |
             | Desktops  | Si            |
             | Notebooks | Si            |
             | Software  | No            |
 
-    @EscenarioOutline
-    Scenario: El usuario visualiza correctamente los productos en modo lista
-        Given El usuario esta en la categoria "<categoria>"
-        When El usuario cambia la vista a "Lista"
-        Then Cada producto mostrado debe contener:
+    @EsquemaDelEscenario
+    Esquema del escenario: El usuario visualiza correctamente los productos en modo lista
+        Dado El usuario esta en la categoria "<categoria>"
+        Cuando El usuario cambia la vista a "Lista"
+        Entonces Cada producto mostrado debe contener:
             | Nombre                        |
             | Valoracion                    |
             | Descripcion breve             |
@@ -122,17 +122,17 @@ Feature: Visualizacion de computadores
             | Boton "Agregar al carrito"    |
             | Boton "Comparar 2 productos"  |
             | Boton "Agregar a la Wishlist" |
-        Examples:
+        Ejemplos:
             | categoria |
             | Desktops  |
             | Notebooks |
             | Software  |
 
     @EscenarioNegativo
-    Scenario:Un producto no muestra toda la informacion requerida en la vista de lista
-        Given El usuario esta en una categoria
-        When El usuario cambia la vista a "Lista"
-        Then Algunos productos no muestran los elementos requeridos en el resumen del producto:
+    Escenario:Un producto no muestra toda la informacion requerida en la vista de lista
+        Dado El usuario esta en una categoria
+        Cuando El usuario cambia la vista a "Lista"
+        Entonces Algunos productos no muestran los elementos requeridos en el resumen del producto:
             | Nombre                        |
             | Valoracion                    |
             | Descripcion breve             |
@@ -142,28 +142,28 @@ Feature: Visualizacion de computadores
             | Boton "Agregar a la Wishlist" |
 
 
-    @EscenarioOutline
-    Scenario: El usuario visualiza correctamente los productos en modo cuadros
-        Given El usuario esta en la categoria "<categoria>"
-        When El usuario cambia la vista a "Cuadros"
-        Then Cada producto mostrado debe contener:
+    @EsquemaDelEscenario
+    Esquema del escenario: El usuario visualiza correctamente los productos en modo cuadros
+        Dado El usuario esta en la categoria "<categoria>"
+        Cuando El usuario cambia la vista a "Cuadros"
+        Entonces Cada producto mostrado debe contener:
             | Nombre                        |
             | Valoracion                    |
             | Precio                        |
             | Boton "Agregar al carrito"    |
             | Boton "Comparar 2 productos"  |
             | Boton "Agregar a la Wishlist" |
-        Examples:
+        Ejemplos:
             | categoria |
             | Desktops  |
             | Notebooks |
             | Software  |
 
     @EscenarioNegativo
-    Scenario:Un producto no muestra toda la informacion requerida en la vista de cuadros
-        Given El usuario esta en una categoria
-        When El usuario cambia la vista a "Cuadros"
-        Then Algunos productos no muestran los elementos requeridos en el resumen del producto:
+    Escenario:Un producto no muestra toda la informacion requerida en la vista de cuadros
+        Dado El usuario esta en una categoria
+        Cuando El usuario cambia la vista a "Cuadros"
+        Entonces Algunos productos no muestran los elementos requeridos en el resumen del producto:
             | Nombre                        |
             | Valoracion                    |
             | Precio                        |
@@ -172,89 +172,89 @@ Feature: Visualizacion de computadores
             | Boton "Agregar a la Wishlist" |
 
     @EscenarioFeliz
-    Scenario:El usuario agrega un producto al carrito desde la pantalla de categorias
-        Given El usuario esta en la pantalla de categorias
-        When El usuario selecciona la opcion "Agregar al carrito" en un producto
-        Then El producto se añade correctamente al carrito
+    Escenario:El usuario agrega un producto al carrito desde la pantalla de categorias
+        Dado El usuario esta en la pantalla de categorias
+        Cuando El usuario selecciona la opcion "Agregar al carrito" en un producto
+        Entonces El producto se anade correctamente al carrito
 
     @EscenarioNegativo
-    Scenario:Error al intentar agregar un producto al carrito desde la pantalla de categorias
-        Given El usuario esta en la pantalla de categorias
-        When El usuario selecciona la opcion "Agregar al carrito" en un producto
-        Then El producto no se añade al carrito
+    Escenario:Error al intentar agregar un producto al carrito desde la pantalla de categorias
+        Dado El usuario esta en la pantalla de categorias
+        Cuando El usuario selecciona la opcion "Agregar al carrito" en un producto
+        Entonces El producto no se anade al carrito
 
     @EscenarioFeliz
-    Scenario:El usuario agrega un producto a la lista de deseos desde la pantalla de categorias
-        Given El usuario esta en la pantalla de categorias
-        When El usuario selecciona la opcion "Agregar a la Wishlist" en un producto
-        Then El producto se añade correctamente a la lista de deseos
+    Escenario:El usuario agrega un producto a la lista de deseos desde la pantalla de categorias
+        Dado El usuario esta en la pantalla de categorias
+        Cuando El usuario selecciona la opcion "Agregar a la Wishlist" en un producto
+        Entonces El producto se anade correctamente a la lista de deseos
 
     @EscenarioNegativo
-    Scenario:Error al intentar agregar un producto a la lista de deseos desde la pantalla de categorias
-        Given El usuario esta en la pantalla de categorias
-        When El usuario selecciona la opcion "Agregar a la Wishlist" en un producto
-        Then El producto no se añade a la lista de deseos
+    Escenario:Error al intentar agregar un producto a la lista de deseos desde la pantalla de categorias
+        Dado El usuario esta en la pantalla de categorias
+        Cuando El usuario selecciona la opcion "Agregar a la Wishlist" en un producto
+        Entonces El producto no se anade a la lista de deseos
 
     @EscenarioFeliz
-    Scenario:El usuario visualiza correctamente el detalle del producto desde la pantalla de categorias
-        Given El usuario esta en la pantalla de categorias
-        When El usuario da clic sobre un producto
-        Then El sistema redirige al usuario a la pantalla de detalle del producto
-        And El usuario podra visualizar la informacion detallada del producto
+    Escenario:El usuario visualiza correctamente el detalle del producto desde la pantalla de categorias
+        Dado El usuario esta en la pantalla de categorias
+        Cuando El usuario da clic sobre un producto
+        Entonces El sistema redirige al usuario a la pantalla de detalle del producto
+        Y El usuario podra visualizar la informacion detallada del producto
 
     @EscenarioNegativo
-    Scenario:Error al visualizar el detalle del producto desde la pantalla de categorias
-        Given El usuario esta en la pantalla de categorias
-        When El usuario da clic sobre un producto
-        Then El sistema no redirige al usuario a la pantalla de detalle del producto
+    Escenario:Error al visualizar el detalle del producto desde la pantalla de categorias
+        Dado El usuario esta en la pantalla de categorias
+        Cuando El usuario da clic sobre un producto
+        Entonces El sistema no redirige al usuario a la pantalla de detalle del producto
 
     @EscenarioFeliz
-    Scenario: El usuario selecciona las especificaciones del producto y el sistema calcula el precio correctamente
-        Given El usuario esta en la pantalla de detalle de un producto en la categoria "Computers"
-        When El usuario selecciona las especificaciones del producto
-        Then El sistema actualiza y muestra el precio total a pagar
-        And El usuario puede ingresar la cantidad deseada del producto
-        And El usuario puede ver el boton "Agregar al carrito"
+    Escenario: El usuario selecciona las especificaciones del producto y el sistema calcula el precio correctamente
+        Dado El usuario esta en la pantalla de detalle de un producto en la categoria "Computers"
+        Cuando El usuario selecciona las especificaciones del producto
+        Entonces El sistema actualiza y muestra el precio total a pagar
+        Y El usuario puede ingresar la cantidad deseada del producto
+        Y El usuario puede ver el boton "Agregar al carrito"
 
     @EscenarioNegativo
-    Scenario: Error en el calculo del precio al seleccionar las especificaciones de un producto
-        Given El usuario esta en la pantalla de detalle de un producto en la categoria "Computers"
-        When El usuario selecciona las especificaciones del producto
-        Then El sistema no muestra el precio total actualizado
+    Escenario: Error en el calculo del precio al seleccionar las especificaciones de un producto
+        Dado El usuario esta en la pantalla de detalle de un producto en la categoria "Computers"
+        Cuando El usuario selecciona las especificaciones del producto
+        Entonces El sistema no muestra el precio total actualizado
 
     @EscenarioFeliz
-    Scenario: El usuario selecciona la cantidad del producto antes de agregar al carrito
-        Given El usuario esta en la pantalla de detalle de un producto en la categoria "Computers"
-        When El usuario ingresa una cantidad valida del producto
-        Then El usuario selecciona el boton "Agregar al carrito"
-        And El sistema agrega exitosamente en producto al carrito con la cantidad seleccionada
+    Escenario: El usuario selecciona la cantidad del producto antes de agregar al carrito
+        Dado El usuario esta en la pantalla de detalle de un producto en la categoria "Computers"
+        Cuando El usuario ingresa una cantidad valida del producto
+        Entonces El usuario selecciona el boton "Agregar al carrito"
+        Y El sistema agrega exitosamente en producto al carrito con la cantidad seleccionada
 
 
     @EscenarioNegativo
-    Scenario: El usuario selecciona una cantidad invalida
-        Given El usuario esta en la pantalla de detalle de un producto en la categoria "Computers"
-        When El usuario ingresa una cantidad invalida del producto (0 o negativo)
-        Then El usuario no puede agregar productos al carrito
+    Escenario: El usuario selecciona una cantidad invalida
+        Dado El usuario esta en la pantalla de detalle de un producto en la categoria "Computers"
+        Cuando El usuario ingresa una cantidad invalida del producto (0 o negativo)
+        Entonces El usuario no puede agregar productos al carrito
 
 
-    @EscenarioOutline
-    Scenario: El usuario selecciona la visualizacion por secciones
-        Given El usuario esta en la pantalla de productos
-        When El usuario <selecciona> una visualizacion
-        Then El usuario puede ver la <cantidadMostrada> de productos
-        Examples:
+    @EsquemaDelEscenario
+    Esquema del escenario: El usuario selecciona la visualizacion por secciones
+        Dado El usuario esta en la pantalla de productos
+        Cuando El usuario <selecciona> una visualizacion
+        Entonces El usuario puede ver la <cantidadMostrada> de productos
+        Ejemplos:
             | selecciona | cantidadMostrada |
             | 3          | 3                |
             | 6          | 6                |
             | 9          | 9                |
             | 15         | 15               |
 
-    @EscenarioOutline
-    Scenario: El usuario no puede tener visualizacion por secciones
-        Given El usuario esta en la pantalla de productos
-        When El usuario <selecciona> una visualizacion
-        Then El usuario ve una <cantidadMostrada> diferente
-        Examples:
+    @EsquemaDelEscenario
+    Esquema del escenario: El usuario no puede tener visualizacion por secciones
+        Dado El usuario esta en la pantalla de productos
+        Cuando El usuario <selecciona> una visualizacion
+        Entonces El usuario ve una <cantidadMostrada> diferente
+        Ejemplos:
             | selecciona | cantidadMostrada |
             | 3          | 6                |
             | 3          | 9                |
@@ -269,27 +269,27 @@ Feature: Visualizacion de computadores
             | 15         | 6                |
             | 15         | 9                |
 
-    @EscenarioOutline
-    Scenario: El usuario puede añadir productos
-        Given El usuario esta en la pantalla principal de productos
-        When El usuario puede añadir <producto> al <opcionSeleccionada>
-        Then El usuario puede ver el <resultado>
-        Examples:
+    @EsquemaDelEscenario
+    Esquema del escenario: El usuario puede anadir productos
+        Dado El usuario esta en la pantalla principal de productos
+        Cuando El usuario puede anadir <producto> al <opcionSeleccionada>
+        Entonces El usuario puede ver el <resultado>
+        Ejemplos:
             | opcionSeleccionada | producto | resultado                     |
-            | carrito            | MacBook  | MacBook añadido al carrito    |
-            | wishlist           | MacBook  | MacBook  añadido al  wishlist |
+            | carrito            | MacBook  | MacBook anadido al carrito    |
+            | wishlist           | MacBook  | MacBook  anadido al  wishlist |
 
 
     @EscenarioFeliz
-    Scenario Outline: El usuario visualiza correctamente los botones adicionales en la pantalla de detalle del producto
-        Given El usuario esta en la pantalla de detalle de un producto en la categoria "<Categoria>"
-        When El usuario revisa la interfaz debajo del boton "ADD TO CART"
-        Then El sistema muestra los botones:
-            | Boton "Añadir a la lista de deseos"       |
+    Esquema del escenario: El usuario visualiza correctamente los botones adicionales en la pantalla de detalle del producto
+        Dado El usuario esta en la pantalla de detalle de un producto en la categoria "<Categoria>"
+        Cuando El usuario revisa la interfaz debajo del boton "ADD TO CART"
+        Entonces El sistema muestra los botones:
+            | Boton "Anadir a la lista de deseos"       |
             | Boton "Comprar"                           |
             | Boton "Enviar email a un amigo"           |
             | Opciones para compartir en redes sociales |
-        Examples:
+        Ejemplos:
             | Categoria  |
             | Computers  |
             | Tablets    |
@@ -297,12 +297,12 @@ Feature: Visualizacion de computadores
             | Software   |
 
     @EscenarioNegativo
-    Scenario Outline: Error en la visualizacion de los botones adicionales en la pantalla de detalle del producto
-        Given El usuario esta en la pantalla de detalle de un producto en la categoria "<Categoria>"
-        When El usuario revisa la interfaz debajo del boton "ADD TO CART"
-        Then El sistema no muestra algunos de los botones adicionales correctamente
-        And El usuario ve un mensaje de error "Ocurrio un problema al cargar las opciones adicionales"
-        Examples:
+    Esquema del escenario: Error en la visualizacion de los botones adicionales en la pantalla de detalle del producto
+        Dado El usuario esta en la pantalla de detalle de un producto en la categoria "<Categoria>"
+        Cuando El usuario revisa la interfaz debajo del boton "ADD TO CART"
+        Entonces El sistema no muestra algunos de los botones adicionales correctamente
+        Y El usuario ve un mensaje de error "Ocurrio un problema al cargar las opciones adicionales"
+        Ejemplos:
             | Categoria  |
             | Computers  |
             | Tablets    |
@@ -310,10 +310,10 @@ Feature: Visualizacion de computadores
             | Software   |
 
     @EscenarioFeliz
-    Scenario:Restriccion de compra para Apple MacBook Pro 13-inch
-        Given el usuario esta en la categoria "Notebooks"
-        When selecciona el producto "Apple MacBook Pro 13 -inch"
-        And intenta agregar solo 1 unidad al carrito
-        Then el sistema debe mostrar un mensaje indicando la "cantidad minima es de 2 unidades"
-        When intenta agregar 2 o mas unidades
-        Then el sistema debe permitir la compra
+    Escenario:Restriccion de compra para Apple MacBook Pro 13-inch
+        Dado el usuario esta en la categoria "Notebooks"
+        Cuando selecciona el producto "Apple MacBook Pro 13 -inch"
+        Y intenta agregar solo 1 unidad al carrito
+        Entonces el sistema debe mostrar un mensaje indicYo la "cantidad minima es de 2 unidades"
+        Cuando intenta agregar 2 o mas unidades
+        Entonces el sistema debe permitir la compra
