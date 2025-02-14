@@ -57,37 +57,79 @@ Caracteristica: Visualizacion de computadores
 
     @EsquemaDelEscenario
     Esquema del escenario:ordenamiento de productos en diferentes formatos
+        Dado Que el usuario selecciona una <categoria>
         Cuando El usuario selecciona la opcion <ordenar>
         Entonces  debe mostrar <formatoResultante>
         Ejemplos:
-            | ordenar               | formatoResultante    |
-            | AZ nombre ascendente  | AZ nombre ascendente |
-            | AZ nombre descendente | AZ nombredescendente |
-            | precio mayor a menor  | precio mayor a menor |
-            | precio menor a mayor  | precio menor a mayor |
+            | categoría  | ordenar               | formatoResultante       |
+            | Software   | AZ nombre ascendente  | AZ nombre ascendente   |
+            | Software   | AZ nombre descendente | AZ nombre descendente  |
+            | Software   | precio mayor a menor  | precio mayor a menor   |
+            | Software   | precio menor a mayor  | precio menor a mayor   |
+            | Desktops   | AZ nombre ascendente  | AZ nombre ascendente   |
+            | Desktops   | AZ nombre descendente | AZ nombre descendente  |
+            | Desktops   | precio mayor a menor  | precio mayor a menor   |
+            | Desktops   | precio menor a mayor  | precio menor a mayor   |
+            | Notebooks  | AZ nombre ascendente  | AZ nombre ascendente   |
+            | Notebooks  | AZ nombre descendente | AZ nombre descendente  |
+            | Notebooks  | precio mayor a menor  | precio mayor a menor   |
+            | Notebooks  | precio menor a mayor  | precio menor a mayor   |
 
     @EsquemaDelEscenario
     Esquema del escenario: ordenamiento incorrecto de productos en diferentes formatos
+        Dado Que el usuario selecciona una <categoria>
         Cuando El usuario selecciona la opcion <ordenar>
         Entonces  debe mostrar <formatoResultante>
-        Ejemplos:
-            | ordenar               | formatoResultante     |
-            | AZ nombre ascendente  | AZ nombre descendente |
-            | AZ nombre ascendente  | precio mayor a menor  |
-            | AZ nombre ascendente  | precio menor a mayor  |
-            | AZ nombre ascendente  |                       |
-            | AZ nombre descendente | AZ nombre ascendente  |
-            | AZ nombre descendente | precio mayor a menor  |
-            | AZ nombre descendente | precio menor a mayor  |
-            | AZ nombre descendente |                       |
-            | precio mayor a menor  | precio menor a mayor  |
-            | precio mayor a menor  | AZ nombre descendente |
-            | precio mayor a menor  | AZ nombre ascendente  |
-            | precio mayor a menor  |                       |
-            | precio menor a mayor  | precio mayor a menor  |
-            | precio menor a mayor  | precio mayor a menor  |
-            | precio menor a mayor  | AZ nombre ascendente  |
-            | precio menor a mayor  |                       |
+        Examples:
+  | Categoría  | Ordenar               | Formato Resultante     |
+  | Software   | AZ nombre ascendente  | AZ nombre descendente  |
+  | Software   | AZ nombre ascendente  | precio mayor a menor   |
+  | Software   | AZ nombre ascendente  | precio menor a mayor   |
+  | Software   | AZ nombre ascendente  |                        |
+  | Software   | AZ nombre descendente | AZ nombre ascendente   |
+  | Software   | AZ nombre descendente | precio mayor a menor   |
+  | Software   | AZ nombre descendente | precio menor a mayor   |
+  | Software   | AZ nombre descendente |                        |
+  | Software   | precio mayor a menor  | precio menor a mayor   |
+  | Software   | precio mayor a menor  | AZ nombre descendente  |
+  | Software   | precio mayor a menor  | AZ nombre ascendente   |
+  | Software   | precio mayor a menor  |                        |
+  | Software   | precio menor a mayor  | precio mayor a menor   |
+  | Software   | precio menor a mayor  | precio mayor a menor   |
+  | Software   | precio menor a mayor  | AZ nombre ascendente   |
+  | Software   | precio menor a mayor  |                        |
+  | Desktops   | AZ nombre ascendente  | AZ nombre descendente  |
+  | Desktops   | AZ nombre ascendente  | precio mayor a menor   |
+  | Desktops   | AZ nombre ascendente  | precio menor a mayor   |
+  | Desktops   | AZ nombre ascendente  |                        |
+  | Desktops   | AZ nombre descendente | AZ nombre ascendente   |
+  | Desktops   | AZ nombre descendente | precio mayor a menor   |
+  | Desktops   | AZ nombre descendente | precio menor a mayor   |
+  | Desktops   | AZ nombre descendente |                        |
+  | Desktops   | precio mayor a menor  | precio menor a mayor   |
+  | Desktops   | precio mayor a menor  | AZ nombre descendente  |
+  | Desktops   | precio mayor a menor  | AZ nombre ascendente   |
+  | Desktops   | precio mayor a menor  |                        |
+  | Desktops   | precio menor a mayor  | precio mayor a menor   |
+  | Desktops   | precio menor a mayor  | precio mayor a menor   |
+  | Desktops   | precio menor a mayor  | AZ nombre ascendente   |
+  | Desktops   | precio menor a mayor  |                        |
+  | Notebooks  | AZ nombre ascendente  | AZ nombre descendente  |
+  | Notebooks  | AZ nombre ascendente  | precio mayor a menor   |
+  | Notebooks  | AZ nombre ascendente  | precio menor a mayor   |
+  | Notebooks  | AZ nombre ascendente  |                        |
+  | Notebooks  | AZ nombre descendente | AZ nombre ascendente   |
+  | Notebooks  | AZ nombre descendente | precio mayor a menor   |
+  | Notebooks  | AZ nombre descendente | precio menor a mayor   |
+  | Notebooks  | AZ nombre descendente |                        |
+  | Notebooks  | precio mayor a menor  | precio menor a mayor   |
+  | Notebooks  | precio mayor a menor  | AZ nombre descendente  |
+  | Notebooks  | precio mayor a menor  | AZ nombre ascendente   |
+  | Notebooks  | precio mayor a menor  |                        |
+  | Notebooks  | precio menor a mayor  | precio mayor a menor   |
+  | Notebooks  | precio menor a mayor  | precio mayor a menor   |
+  | Notebooks  | precio menor a mayor  | AZ nombre ascendente   |
+  | Notebooks  | precio menor a mayor  |                        |
 
     @EsquemaDelEscenario
     Esquema del escenario:filtro exitoso por precio en diferentes rangos
@@ -112,9 +154,9 @@ Caracteristica: Visualizacion de computadores
 
     @EsquemaDelEscenario
     Esquema del escenario: El usuario visualiza correctamente los productos en modo lista
-        Dado El usuario esta en la categoria "<categoria>"
-        Cuando El usuario cambia la vista a "Lista"
-        Entonces Cada producto mostrado debe contener:
+        Dado el usuario esta en la categoria "<categoria>"
+        Cuando el usuario cambia la vista a "Lista"
+        Entonces cada producto mostrado debe contener:
             | Nombre                        |
             | Valoracion                    |
             | Descripcion breve             |
@@ -285,7 +327,7 @@ Caracteristica: Visualizacion de computadores
         Dado El usuario esta en la pantalla de detalle de un producto en la categoria "<Categoria>"
         Cuando El usuario revisa la interfaz debajo del boton "ADD TO CART"
         Entonces El sistema muestra los botones:
-            | Boton "Anadir a la lista de deseos"       |
+            | Boton "Añadir a la lista de deseos"       |
             | Boton "Comprar"                           |
             | Boton "Enviar email a un amigo"           |
             | Opciones para compartir en redes sociales |

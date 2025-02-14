@@ -25,7 +25,7 @@ Caracteristica: Inicio de sesion de un usuario en la plataforma
             | email             | validPassword |
             | "angie@gmail.com" | "12v*2+"      |
 
-        Y Presiona el boton "Login"
+        Y el usuario presiona el boton "Login"
         Entonces El sistema muestra la zona de compra con el mensaje "Welcome to our store"
 
     @EsquemaDelEscenario
